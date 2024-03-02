@@ -7,17 +7,58 @@
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.css' rel='stylesheet' />
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-      }
-
-      #map {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-      }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Akira', sans-serif;;
+            background-color: #f2f2f2; /* Background color changed to greyish */
+        }
+        header {
+            background-color: #333; /* Dark grey background */
+            color: #ffffff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between; /* Logo on left, text on right */
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        #map-container {
+            position: relative;
+            height: calc(100% - 60px); /* Adjusted for header and footer heights */
+            width: 100%;
+        }
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        #button-container {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: #333; /* Dark grey background */
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 10px; /* Increased padding for aesthetics */
+            box-sizing: border-box;
+        }
+        .button {
+            flex: 1; /* Button covers equal space */
+            padding: 10px 20px;
+            background-color: #282929; /* Blue color for buttons */
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 0 5px; /* Minimum space between buttons */
+        }
+        .button:hover {
+            background-color: #282929;
+        }
     </style>
   </head>
   <body>
