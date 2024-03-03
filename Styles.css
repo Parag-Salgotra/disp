@@ -1,6 +1,9 @@
 body {
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 100% of the viewport height */
 }
 
 header {
@@ -10,7 +13,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
+    z-index: 3; /* Set a higher z-index */
 }
 
 header h1 {
@@ -19,21 +22,35 @@ header h1 {
     font-weight: bold;
 }
 
+main {
+    display: flex;
+    flex: 1; /* Take up remaining vertical space */
+}
+
 #map {
-    position: absolute;
-    height: 100%;
-    width: 100%;
+    flex: 1; /* Takes up the remaining space */
+    min-height: 0; /* Allow the map to stretch to the footer */
+    z-index: 1;
+}
+
+#instructions {
+    width: 25%;
+    padding: 20px;
+    background-color: #fff;
+    overflow-y: scroll;
+    font-family: sans-serif;
+    z-index: 2; /* Ensure it's above the map */
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
     width: 100%;
     background-color: #333;
     display: flex;
     justify-content: space-between;
     padding: 20px 10px;
     box-sizing: border-box;
+    margin-top: auto; /* Pushes the footer to the bottom */
+    z-index: 2; /* Set a z-index to position above the map */
 }
 
 .button {
@@ -52,19 +69,7 @@ footer {
     background-color: #282929;
 }
 
-#instructions {
-    position: relative;
-    margin: 20px;
-    width: 25%;
-    top: 0;
-    bottom: 20%;
-    padding: 20px;
-    background-color: #fff;
-    overflow-y: scroll;
-    font-family: sans-serif;
-  }
-
-  .marker {
+.marker {
     position: relative;
     background-image: url('mapbox-icon.png');
     background-size: cover;
@@ -73,13 +78,12 @@ footer {
     border-radius: 50%;
     cursor: pointer;
     z-index: 1;
-  }
+}
 
-  .mapboxgl-popup {
+.mapboxgl-popup {
     max-width: 200px;
-  }
-  
-  .mapboxgl-popup-content {
+}
+
+.mapboxgl-popup-content {
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
-  }
+    font-family: 
