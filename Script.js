@@ -1,9 +1,10 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoicHNhbGdvdHJhIiwiYSI6ImNsdGFoc2ozeTA1aWEybGxyc3lpMzIweGEifQ.XOoMyeoSxD4HsnBM7QpM2w';
+
 const map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/mapbox/light-v10',
-  center: [-122.662323, 45.523751], // starting position
-  zoom: 3
+  style: 'mapbox://styles/mapbox/streets-v12',
+  center: [-96, 37.8],
+  zoom: 10 // starting position
 });
 
 const geojson = {
@@ -13,7 +14,7 @@ const geojson = {
       type: 'Feature',
       geometry: {
         type: 'Point',
-        coordinates: [-77.032, 38.913]
+        coordinates: [-96, 37.913]
       },
       properties: {
         title: 'Mapbox',
@@ -24,7 +25,7 @@ const geojson = {
       type: 'Feature',
       geometry: {
         type: 'Point',
-        coordinates: [-122.414, 37.776]
+        coordinates: [-96, 37.776]
       },
       properties: {
         title: 'Mapbox',
@@ -34,14 +35,6 @@ const geojson = {
   ]
 };
 
-for (const feature of geojson.features) {
-  // create a HTML element for each feature
-  const el = document.createElement('div');
-  el.className = 'marker';
-
-  // make a marker for each feature and add to the map
-  new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
-}
 
 // set the bounds of the map
 // const bounds = [
@@ -52,7 +45,7 @@ for (const feature of geojson.features) {
 
 // an arbitrary start will always be the same
 // only the end or destination will change
-const start = [-122.662323, 45.523751];
+const start = [-96, 37.8];
 
 // create a function to make a directions request
 async function getRoute(end) {
@@ -141,6 +134,22 @@ map.on('load', () => {
       'circle-color': '#3887be'
     }
   });
+
+  for (const feature of geojson.features) {
+    // create a HTML element for each feature
+    const el = document.createElement('div');
+    el.className = 'marker';
+     
+    // make a marker for each feature and add it to the map
+    new mapboxgl.Marker(el)
+    .setLngLat(feature.geometry.coordinates)
+    .setPopup(
+    new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML( `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>` )
+    )
+    .addTo(map);
+    }
+    
   map.on('click', (event) => {
     const coords = Object.keys(event.lngLat).map((key) => event.lngLat[key]);
     const end = {
@@ -186,4 +195,5 @@ map.on('load', () => {
     }
     getRoute(coords);
   });
+
 });
