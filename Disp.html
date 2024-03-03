@@ -6,64 +6,22 @@
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.css' rel='stylesheet' />
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Akira', sans-serif;;
-            background-color: #f2f2f2; /* Background color changed to greyish */
-        }
-        header {
-            background-color: #333; /* Dark grey background */
-            color: #ffffff;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between; /* Logo on left, text on right */
-            align-items: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        #map-container {
-            position: relative;
-            height: calc(100% - 60px); /* Adjusted for header and footer heights */
-            width: 100%;
-        }
-        #map {
-            height: 100%;
-            width: 100%;
-        }
-        #button-container {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background-color: #333; /* Dark grey background */
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 10px; /* Increased padding for aesthetics */
-            box-sizing: border-box;
-        }
-        .button {
-            flex: 1; /* Button covers equal space */
-            padding: 10px 20px;
-            background-color: #282929; /* Blue color for buttons */
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin: 0 5px; /* Minimum space between buttons */
-        }
-        .button:hover {
-            background-color: #282929;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css"/>
   </head>
   <body>
-    <div id='map'></div>
-    <div id="instructions"></div>
+    <header>
+        <img src = "logo.png" alt = "logo" style = "height: 40px; width: auto;">
+        <h1>Disp</h1>
+    </header>
+    <main>
+        <div id='map'></div>
+        <div id="instructions"></div>
+    </main>
+    <footer>
+        <button class = "button" onclick="buttonClicked(1)">Parking Spots</button>
+        <button class = "button" onclick="buttonClicked(2)">Routes</button>
+        <button class = "button" onclick="buttonClicked(3)">Areas</button>
+    </footer>
     <script src = Script.js></script>
   </body>
 </html>
